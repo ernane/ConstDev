@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	<title>Mc Engenharia</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link
+		href="${facesContext.externalContext.requestContextPath}/pages/template/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<link
+		href="${facesContext.externalContext.requestContextPath}/pages/template/css/styles.css"
+		rel="stylesheet" />
+	<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+</h:head>
+<h:body>
+	<ui:include src="/pages/template/header.xhtml"></ui:include>
+
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row">
+
+			<ui:include src="/pages/template/menu.xhtml"></ui:include>
+			<h:form>
+				<!-- /col-3 -->
+				<div class="col-sm-9">
+
+					<a href="#"><strong><i
+								class="glyphicon glyphicon-dashboard"></i> Cadastros</strong></a>
+					<hr />
+
+					<div class="row">
+					
+					<p:messages showDetail="true"/>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Produtos</h4>
+                        </div>
+                        <div class="panel-body">
+		                       <p:dataTable value="#{produtoMB.listaProduto}" var="p">
+		
+									<p:column  headerText="Nome">
+										<h:outputText value="#{p.nome}" />
+									</p:column>
+									<p:column  headerText="Tipo">
+										<h:outputText value="Produto" rendered="#{p.tipo == 1}"/>
+										<h:outputText value="Ferramenta" rendered="#{p.tipo == 2}"/>
+									</p:column>
+									<p:column  headerText="Descrição">
+										<h:outputText value="#{p.descricao}" />
+									</p:column>
+									<p:column  headerText="Categoria">
+										<h:outputText value="#{p.categoria.descricao}" />
+									</p:column>
+									<p:column  headerText="Ativo">
+										<h:outputText value="Sim" rendered="#{p.ativo}" style="color:blue"/>
+										<h:outputText value="Não" rendered="#{p.ativo == false}" style="color:red"/>
+									</p:column>
+									<p:column>
+										<h:commandButton value="Editar" styleClass="btn btn-success" style="margin: 5px !important" action="#{produtoMB.alterarProdutoInit}" />
+										<h:commandButton value="Excluir" styleClass="btn btn-danger" action="#{produtoMB.excluirProduto}" onclick="return confirm('Você tem certeza que deseja excluir este item?')"/>
+									</p:column>
+		
+								</p:dataTable>
+                        </div>
+                    </div>
+                    
+					<div class="panel panel-default">
+                        <div class="panel-footer">
+                             Novos Produtos
+                        </div>
+                        <div class="panel-body">
+							<h:panelGrid columns="2" >
+								
+								<h:outputLabel value="Categoria: "  for="categoria" style="margin: 5px !important"/>
+								<h:selectOneMenu value="#{produtoMB.produto.categoria.idCategoria}" id="categoria">
+									<f:selectItems value="#{produtoMB.listaCategoria}" var="cat" itemLabel="#{cat.descricao}" itemValue="#{cat.idCategoria}"/>
+								</h:selectOneMenu>
+								
+								<h:outputLabel value="Tipo: "  for="tipo" style="margin: 5px !important"/>
+								<h:selectOneMenu value="#{produtoMB.produto.tipo}" id="tipo">
+									<f:selectItem itemLabel="Produtos" itemValue="1"/>
+									<f:selectItem itemLabel="Ferramentas" itemValue="2"/>
+								</h:selectOneMenu>
+								
+								<h:outputLabel value="Nome: "  for="nome" style="margin: 5px !important"/>
+								<h:inputText value="#{produtoMB.produto.nome}" id="nome"/>
+								
+								<h:outputLabel value="Descrição: "  for="desc" style="margin: 5px !important"/>
+								<h:inputText value="#{produtoMB.produto.descricao}" id="desc"/>
+								
+								
+								<h:outputLabel value="Unidade: "  for="un" style="margin: 5px !important"/>
+								<p:outputPanel>
+									<h:inputText value="#{produtoMB.produto.unidade}" id="un" maxlength="3"/>
+									<h:outputText value=" Exemplo: Kg para Quilograma, gr para Grama, un para Unidade e etc."/>
+								</p:outputPanel>
+								
+								<h:outputLabel value="Ativo: "  for="ativo" style="margin: 5px !important"/>
+								<h:selectOneMenu value="#{produtoMB.produto.ativo}">
+									<f:selectItem itemLabel="Sim" itemValue="true"/>
+									<f:selectItem itemLabel="Não" itemValue="false"/>
+								</h:selectOneMenu>
+							</h:panelGrid>
+						
+						<br/>
+						
+						<h:commandButton value="Inserir" action="#{produtoMB.insertProduto}" styleClass="btn btn-primary" rendered="#{produtoMB.btnEditarProduto == false}"/>
+						<h:commandButton value="Alterar" action="#{produtoMB.alterarProduto}" styleClass="btn btn-success" rendered="#{produtoMB.btnEditarProduto}" style="margin: 5px !important"/>
+						<h:commandButton value="Voltar" action="#{produtoMB.init}" styleClass="btn btn-info" rendered="#{produtoMB.btnEditarProduto}"/>
+						</div>
+						</div>
+						
+
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<!-- /.modal -->
+	<!-- script references -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="${facesContext.externalContext.requestContextPath}/pages/template/js/bootstrap.min.js"></script>
+	<script src="${facesContext.externalContext.requestContextPath}/pages/template/js/scripts.js"></script>
+</h:body>
+</html>

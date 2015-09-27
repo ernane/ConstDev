@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta charset="utf-8"/>
+		<title>Bootstrap 3 Admin</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link href="${facesContext.externalContext.requestContextPath}/pages/template/css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="${facesContext.externalContext.requestContextPath}/pages/template/css/styles.css" rel="stylesheet"/>
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+	</h:head>
+	<h:body>
+	<ui:include src="/pages/template/header.xhtml"></ui:include>
+
+<!-- Main -->
+<div class="container-fluid">
+    <div class="row">
+       
+       <ui:include src="/pages/template/menu.xhtml"></ui:include>
+       <h:form>
+        <!-- /col-3 -->
+        <div class="col-sm-9">
+
+            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Visão Geral</strong></a>
+            <hr/>
+
+            <div class="row">
+                <!-- center left-->
+                <div class="col-md-6">
+                    <div class="btn-group btn-group-justified">
+                        <h:commandLink  action="#{Teste.teste()}"  styleClass="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon glyphicon-transfer"></i>
+                            <br/> Movimentação
+                        </h:commandLink>
+                        <a href="#" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon glyphicon-object-align-bottom"></i>
+                            <br/> Cotação
+                        </a>
+                        <a href="#" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            <br/> Compras
+                        </a>
+                        <a href="#" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-home"></i>
+                            <br/> Obras
+                        </a>
+                    </div>
+
+                    <hr/>
+                    
+                       <div class="well">Movimentações Pendentes <span class="badge pull-right">3</span></div>
+
+                    <hr/>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Ocorrências</h4></div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-danger">Recepção de materiais faltando produtos - Obra Senador Lemos</a>
+                                <a href="#" class="list-group-item list-group-item-success">Lista de Compras aguardando aprovação - Solicitante Karim Mendes Yehia</a>
+                                <a href="#" class="list-group-item list-group-item-success">Lista de Compras aguardando aprovação - Solicitante João Marcos</a>
+                                <a href="#" class="list-group-item">Obra da Senador Lemos com Estoque Baixo</a>
+                                <a href="#" class="list-group-item">Obra da Josê Malcher com Estoque Baixo</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr/>
+
+                </div>
+                <!--/col-->
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Mensagem</h4></div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                Nova Mensagem
+                            </div>
+                            <p>Caro Karim Mendes, a obra da Senador Lemos precisa de 50 sacas de cimento. Favor providenciar</p>
+                            <p>Caro Karim Mendes, a obra da Senador Lemos precisa de 50 sacas de cimento. Favor providenciar</p>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Obra</th>
+                                    <th>Status</th>
+                                    <th>Conclusão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Senador Lemos</td>
+                                    <td>Iniciando</td>
+                                    <td>10/10/2016</td>
+                                </tr>
+                                <tr>
+                                    <td>Alcindo Cacela</td>
+                                    <td>Em andamento</td>
+                                    <td>20/05/2017</td>
+                                </tr>
+                                <tr>
+                                    <td>Alcindo Cacela</td>
+                                    <td>Em andamento</td>
+                                    <td>20/05/2017</td>
+                                </tr>
+                                <tr>
+                                    <td>..</td>
+                                    <td>..</td>
+                                    <td>..</td>
+                                </tr>
+                                <tr>
+                                    <td>..</td>
+                                    <td>..</td>
+                                    <td>..</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+ 
+
+                </div>
+                <!--/col-span-6-->
+
+            </div>
+            <!--/row-->
+
+            <a href="#"><strong><i class="glyphicon glyphicon-comment"></i> Movimentações de Hoje</strong></a>
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(08:10) Movimentação - </small> Augusto Montegro para Senador Lemos </a></li>
+                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(09:44) Movimentação - </small> Senador Lemos para Alcindo Cacela.</a></li>
+                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart"></i> <small>(08:10) Compra - </small> Ordem de Compra 01239 para Senador Lemos </a></li>
+                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(08:10) Movimentação - </small> Augusto Montegro para Senador Lemos </a></li>
+                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(09:44) Movimentação - </small> Senador Lemos para Alcindo Cacela.</a></li>
+                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart"></i> <small>(08:10) Compra - </small> Ordem de Compra 01239 para Senador Lemos </a></li>
+                    </ul>
+                </div>
+                 
+            </div>
+           
+        </div>
+        
+        <!--/col-span-9-->
+         </h:form>
+    </div>
+   
+</div>
+<!-- /Main -->
+
+<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+
+<div class="modal" id="addWidgetModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Add Widget</h4>
+            </div>
+            <div class="modal-body">
+                <p>Add a widget stuff here..</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn">Close</a>
+                <a href="#" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
+        
+        <!-- /.modal-content -->
+        
+    </div>
+    <!-- /.modal-dalog -->
+</div>
+<!-- /.modal -->
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="../pages/template/js/bootstrap.min.js"></script>
+		<script src="../pages/template/js/scripts.js"></script>
+	</h:body>
+</html>

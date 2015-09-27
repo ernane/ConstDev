@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	<title>Mc Engenharia</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link
+		href="${facesContext.externalContext.requestContextPath}/pages/template/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<link
+		href="${facesContext.externalContext.requestContextPath}/pages/template/css/styles.css"
+		rel="stylesheet" />
+	<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+</h:head>
+<h:body>
+	<ui:include src="/pages/template/header.xhtml"></ui:include>
+
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row">
+
+			<ui:include src="/pages/template/menu.xhtml"></ui:include>
+			<h:form>
+				<!-- /col-3 -->
+				<div class="col-sm-9">
+
+					<a href="#"><strong><i
+								class="glyphicon glyphicon-dashboard"></i> Cadastros</strong></a>
+					<hr />
+
+					<div class="row">
+					
+					<p:messages showDetail="true"/>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Obras</h4>
+                        </div>
+                        <div class="panel-body">
+		                       <p:dataTable value="#{obraMB.listaObra}" var="c">
+		
+									<p:column  headerText="Descrição">
+										<h:outputText value="#{c.descricao}" />
+									</p:column>
+									<p:column  headerText="Endereco">
+										<h:outputText value="#{c.endereco}" />
+									</p:column>
+									<p:column  headerText="Descrição">
+										<h:outputText value="#{c.municipio}" />
+									</p:column>
+									<p:column  headerText="Data Início">
+										<h:outputText value="#{c.dataInicio}">
+											<f:convertDateTime pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+									<p:column  headerText="Data Fim">
+										<h:outputText value="#{c.dataFim}" >
+											<f:convertDateTime pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+									<p:column  headerText="Status">
+										<h:outputText value="Registrada" rendered="#{c.statusObra == 1}"/>
+										<h:outputText value="Em andamento" rendered="#{c.statusObra == 2}"/>
+										<h:outputText value="Finalizada" rendered="#{c.statusObra == 3}"/>
+										<h:outputText value="Cancelada" rendered="#{c.statusObra == 4}"/>
+										<h:outputText value="Inativa" rendered="#{c.statusObra == 5}"/>
+									</p:column>
+									<p:column>
+										<h:commandButton value="Editar" styleClass="btn btn-success" style="margin: 5px !important" action="#{obraMB.alterarObraInit}" />
+										<h:commandButton value="Excluir" styleClass="btn btn-danger" action="#{obraMB.excluirObra}" onclick="return confirm('Você tem certeza que deseja excluir este item?')"/>
+									</p:column>
+		
+								</p:dataTable>
+                        </div>
+                    </div>
+                    
+					<div class="panel panel-default">
+                        <div class="panel-footer">
+                             Novas Obras
+                        </div>
+                        <div class="panel-body">
+							<h:panelGrid columns="2" >
+								
+								<h:outputLabel value="Status: "  for="status" style="margin: 5px !important"/>
+								<h:selectOneMenu value="#{obraMB.obra.statusObra}" id="status">
+									<f:selectItem itemValue="1" itemLabel="Registrada"/>
+									<f:selectItem itemValue="2" itemLabel="Em andamento"/>
+									<f:selectItem itemValue="3" itemLabel="Finalizada"/>
+									<f:selectItem itemValue="4" itemLabel="Cancelada"/>
+									<f:selectItem itemValue="5" itemLabel="Inativa"/>
+								</h:selectOneMenu>								
+							
+								<h:outputLabel value="Descrição: "  for="descricao" style="margin: 5px !important"/>
+								<h:inputText value="#{obraMB.obra.descricao}" id="descricao" size="50"/>
+								
+								<h:outputLabel value="Município: "  for="municipio" style="margin: 5px !important"/>
+								<h:inputText value="#{obraMB.obra.municipio}" id="municipio"/>
+								
+								<h:outputLabel value="Endereço: "  for="endereco" style="margin: 5px !important"/>
+								<h:inputText value="#{obraMB.obra.endereco}" id="endereco" size="60"/>
+								
+								<h:outputLabel value="Data de início: "  for="dataInicio" style="margin: 5px !important"/>
+								<p:calendar value="#{obraMB.obra.dataInicio}" id="dataInicio" converterMessage="A data de início inválida. Utilze o formato dd/mm/aaaa. Ex: 24/10/2015"/>
+								
+								<h:outputLabel value="Data Finalização: "  for="dataFim" style="margin: 5px !important"/>
+								<p:calendar value="#{obraMB.obra.dataFim}" id="dataFim"  styleClass="input-prime" style="background: none !important;" converterMessage="A data de finalização inválida. Utilze o formato dd/mm/aaaa. Ex: 24/10/2015"/>
+							</h:panelGrid>
+						
+						<br/>
+						
+						<h:commandButton value="Inserir" action="#{obraMB.insertObra}" styleClass="btn btn-primary" rendered="#{obraMB.btnEditarObra == false}"/>
+						<h:commandButton value="Alterar" action="#{obraMB.alterarObra}" styleClass="btn btn-success" rendered="#{obraMB.btnEditarObra}" style="margin: 5px !important"/>
+						<h:commandButton value="Voltar" action="#{obraMB.init}" styleClass="btn btn-info" rendered="#{obraMB.btnEditarObra}"/>
+						</div>
+						</div>
+						
+
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<!-- /.modal -->
+	<!-- script references -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="../pages/template/js/bootstrap.min.js"></script>
+	<script src="../pages/template/js/scripts.js"></script>
+</h:body>
+</html>
